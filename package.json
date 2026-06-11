@@ -1,0 +1,33 @@
+{
+  "name": "shipios",
+  "version": "1.0.0",
+  "description": "ShipiOS monorepo for the web product, schema contract, and Rust generation engine",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "cargo test --workspace",
+    "dev": "npm --workspace @shipios/web run dev",
+    "build": "npm --workspace @shipios/web run build",
+    "lint": "npm --workspace @shipios/web run lint",
+    "test:rust": "cargo test --workspace"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asimwe1/shipios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/asimwe1/shipios/issues"
+  },
+  "homepage": "https://github.com/asimwe1/shipios#readme",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
