@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "0.1.0",
+  "app": {
+    "name": "HabitFlow",
+    "bundleId": "dev.shipios.habitflow",
+    "platform": "swiftui",
+    "theme": {
+      "primaryColor": "#0F172A",
+      "accentColor": "#14B8A6"
+    }
+  },
+  "screens": [
+    {
+      "id": "home",
+      "title": "Today",
+      "components": [
+        {
+          "id": "hero-title",
+          "kind": "text",
+          "label": "Your habits for today"
+        },
+        {
+          "id": "habit-list",
+          "kind": "list",
+          "children": [
+            {
+              "id": "drink-water",
+              "kind": "toggle",
+              "label": "Drink water"
+            },
+            {
+              "id": "read-book",
+              "kind": "toggle",
+              "label": "Read 10 pages"
+            },
+            {
+              "id": "walk",
+              "kind": "toggle",
+              "label": "Walk 20 minutes"
+            }
+          ]
+        },
+        {
+          "id": "add-habit",
+          "kind": "button",
+          "label": "Add habit"
+        }
+      ]
+    }
+  ]
+}
+

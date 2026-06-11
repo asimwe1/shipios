@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shipios.dev/schemas/app.schema.json",
+  "title": "ShipiOS App Schema",
+  "description": "Contract for previewing and exporting a ShipiOS app project.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "app",
+    "screens"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "app": {
+      "type": "object",
+      "required": [
+        "name",
+        "bundleId",
+        "platform",
+        "theme"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bundleId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9.-]+$"
+        },
+        "platform": {
+          "type": "string",
+          "enum": [
+            "swiftui"
+          ]
+        },
+        "theme": {
+          "type": "object",
+          "required": [
+            "primaryColor",
+            "accentColor"
+          ],
+          "properties": {
+            "primaryColor": {
+              "type": "string"
+            },
+            "accentColor": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "screens": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/screen"
+      }
+    }
+  },
+  "$defs": {
+    "screen": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "components"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "text",
+            "button",
+            "list",
+            "card",
+            "toggle",
+            "textfield"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+
