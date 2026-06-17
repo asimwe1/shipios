@@ -19,6 +19,7 @@ Completed:
 - added Lemon Squeezy environment templates and configured Vercel production environment variables for the web app
 - aligned GitHub Actions with the real default branch and added a GitHub-driven Vercel production deploy workflow for `apps/web`
 - cleaned the public AppLaunchKit copy to remove internal MVP language and replaced the old simulated checkout route with real Lemon Squeezy checkout
+- removed the legacy multi-page AppLaunchKit routes so the web product now runs as a single-page flow on `/`
 
 Pending:
 
