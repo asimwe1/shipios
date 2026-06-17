@@ -28,6 +28,30 @@ const categories: { value: AppCategory; label: string }[] = [
   { value: "creator", label: "Creator tools" },
 ];
 
+const examplePrompts = [
+  {
+    idea: "Habit tracker for students with reminders and streaks",
+    category: "productivity" as AppCategory,
+    audience: "Students building consistent routines",
+    differentiator:
+      "It feels calm and lightweight instead of turning habits into homework.",
+  },
+  {
+    idea: "Meal planner that turns saved recipes into weekly grocery lists",
+    category: "lifestyle" as AppCategory,
+    audience: "Busy households planning dinners for the week",
+    differentiator:
+      "It removes the back-and-forth between recipe saving, planning, and shopping.",
+  },
+  {
+    idea: "Reading tracker with daily chapter goals and streak recovery",
+    category: "education" as AppCategory,
+    audience: "Readers trying to rebuild a daily reading habit",
+    differentiator:
+      "It is built around momentum and recovery instead of guilt-heavy streak pressure.",
+  },
+];
+
 const plans: {
   key: PaidPlan;
   title: string;
@@ -36,21 +60,21 @@ const plans: {
 }[] = [
   {
     key: "free",
-    title: "Free Preview",
+    title: "Preview",
     price: "$0",
-    description: "Partial listing and 2 screenshot captions.",
+    description: "Core listing preview plus 2 screenshot captions.",
   },
   {
     key: "full",
     title: "Full Kit",
     price: "$9",
-    description: "Full listing, full screenshot copy, and markdown export.",
+    description: "Complete listing, all screenshot copy, and export.",
   },
   {
     key: "pro",
     title: "Pro Kit",
     price: "$19",
-    description: "Full kit plus checklist, privacy notes, and launch posts.",
+    description: "Full kit plus review notes, privacy guidance, and launch copy.",
   },
 ];
 
@@ -115,6 +139,11 @@ export function OnePageGenerator() {
     setDraft((current) => ({ ...current, [key]: value }));
   }
 
+  function applyExample(example: AppLaunchDraft) {
+    setDraft(example);
+    setCheckoutError(null);
+  }
+
   function handleGenerate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setHasGenerated(true);
@@ -123,10 +152,10 @@ export function OnePageGenerator() {
     savePlanToStorage("free");
   }
 
-  function handleUnlock(plan: PaidPlan) {
-    setActivePlan(plan);
+  function handleStayFree() {
+    setActivePlan("free");
     saveDraftToStorage(draft);
-    savePlanToStorage(plan);
+    savePlanToStorage("free");
   }
 
   async function handlePaidCheckout(plan: PaidPlan) {
@@ -173,58 +202,125 @@ export function OnePageGenerator() {
   }
 
   return (
-    <div className="grid gap-8">
-      <section className="relative overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface)] px-6 py-8 shadow-[0_30px_80px_rgba(23,32,51,0.08)] backdrop-blur sm:px-8 sm:py-10">
-        <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-[rgba(194,65,12,0.16)] blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-48 w-48 rounded-full bg-[rgba(30,64,175,0.12)] blur-3xl" />
+    <div className="grid gap-10 pb-12">
+      <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <div className="space-y-6 pt-4">
+          <div className="inline-flex rounded-full border border-[var(--border-soft)] bg-white/80 px-4 py-2 text-[11px] font-mono uppercase tracking-[0.28em] text-[var(--ink-soft)] shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
+            App Store launch kit
+          </div>
 
-        <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--ink-soft)]">
-              App Store launch kit
-            </p>
-            <h1 className="mt-4 max-w-4xl text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+          <div className="space-y-4">
+            <h1 className="max-w-4xl text-5xl leading-[0.95] font-semibold tracking-[-0.07em] sm:text-6xl lg:text-7xl">
               Turn one app idea into launch-ready App Store copy.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--ink-soft)] sm:text-lg">
-              Generate listing copy, screenshot captions, privacy guidance, launch messaging, and review notes from a single app idea.
+            <p className="max-w-2xl text-base leading-8 text-[var(--ink-soft)] sm:text-lg">
+              AppLaunchKit generates listing copy, screenshot captions, privacy guidance, and launch messaging from a single prompt.
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-5">
-            <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--accent)]">
-              What you get
-            </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="#generator"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-medium text-[#fff7ef] transition-colors hover:bg-[#121722]"
+            >
+              Generate launch kit
+            </a>
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] bg-white/80 px-6 py-3 text-sm font-medium text-[var(--foreground)] transition hover:bg-white"
+            >
+              View pricing
+            </a>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-white/70 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+              <p className="text-2xl font-semibold tracking-[-0.04em]">Listing</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--ink-soft)]">Names, subtitle, short description, full description, and keyword ideas.</p>
+            </div>
+            <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-white/70 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+              <p className="text-2xl font-semibold tracking-[-0.04em]">Screenshots</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--ink-soft)]">Polished caption hooks for each screenshot in the App Store story.</p>
+            </div>
+            <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-white/70 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+              <p className="text-2xl font-semibold tracking-[-0.04em]">Launch</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--ink-soft)]">Privacy notes, review reminders, and launch copy when you need the full package.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative rounded-[2rem] border border-[rgba(16,24,40,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,250,244,0.92))] p-5 shadow-[0_32px_90px_rgba(15,23,42,0.12)]">
+          <div className="absolute inset-x-10 top-0 h-24 rounded-b-[2rem] bg-[radial-gradient(circle,rgba(194,65,12,0.18),transparent_70%)] blur-2xl" />
+          <div className="relative rounded-[1.75rem] border border-[var(--border-soft)] bg-[#1b2230] p-5 text-[#f8f2ea]">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold tracking-[-0.03em]">{kit.appNames[0]}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.24em] text-[#b8c2d6]">
+                  Preview
+                </p>
+              </div>
+              <div className="rounded-full bg-white/8 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[#dfe6f2]">
+                {activePlan}
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-[1.5rem] bg-white/6 p-4">
+              <p className="text-xs uppercase tracking-[0.24em] text-[#b8c2d6]">Subtitle</p>
+              <p className="mt-2 text-lg font-medium">{kit.subtitle}</p>
+              <p className="mt-3 text-sm leading-7 text-[#dbe2ed]">{kit.shortDescription}</p>
+            </div>
+
             <div className="mt-4 grid gap-3">
-              {[
-                "Preview the core listing before you buy.",
-                "Full Kit includes the complete App Store listing and screenshot copy.",
-                "Pro Kit adds review checklist notes, privacy guidance, and launch messaging.",
-                "Export the finished kit in Markdown or print it as a PDF.",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-3xl border border-[var(--border-soft)] bg-white/80 px-4 py-4"
-                >
-                  <p className="text-sm leading-7 text-[var(--foreground)]">{item}</p>
-                </div>
-              ))}
+              {kit.screenshots
+                .slice(0, planIncludes(activePlan, "full") ? 3 : 2)
+                .map((shot, index) => (
+                  <div key={shot.title} className="rounded-[1.35rem] bg-white/6 p-4">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#b8c2d6]">
+                      Screenshot {index + 1}
+                    </p>
+                    <p className="mt-2 text-base font-medium">{shot.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-[#dbe2ed]">{shot.caption}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <section id="generator" className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <form
           onSubmit={handleGenerate}
-          className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_20px_50px_rgba(23,32,51,0.05)]"
+          className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_24px_60px_rgba(15,23,42,0.06)]"
         >
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--ink-soft)]">
-            Input
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-            Describe the app.
-          </h2>
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--ink-soft)]">
+                Generate
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
+                Describe your app.
+              </h2>
+            </div>
+            <button
+              type="submit"
+              className="hidden rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-strong)] md:inline-flex"
+            >
+              Generate preview
+            </button>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {examplePrompts.map((example) => (
+              <button
+                key={example.idea}
+                type="button"
+                onClick={() => applyExample(example)}
+                className="rounded-full border border-[var(--border-soft)] bg-white px-4 py-2 text-sm text-[var(--ink-soft)] transition hover:border-[var(--foreground)] hover:text-[var(--foreground)]"
+              >
+                {example.idea}
+              </button>
+            ))}
+          </div>
 
           <div className="mt-6 grid gap-5">
             <div>
@@ -233,7 +329,8 @@ export function OnePageGenerator() {
                 required
                 value={draft.idea}
                 onChange={(event) => updateField("idea", event.target.value)}
-                className="min-h-36 w-full rounded-3xl border border-[var(--border-soft)] bg-white px-4 py-4 text-sm leading-7 outline-none transition focus:border-[var(--accent)]"
+                className="min-h-36 w-full rounded-[1.5rem] border border-[var(--border-soft)] bg-white px-4 py-4 text-sm leading-7 outline-none transition focus:border-[var(--foreground)]"
+                placeholder="Habit tracker for students with reminders and streaks"
               />
             </div>
 
@@ -243,7 +340,7 @@ export function OnePageGenerator() {
                 <select
                   value={draft.category}
                   onChange={(event) => updateField("category", event.target.value as AppCategory)}
-                  className="w-full rounded-2xl border border-[var(--border-soft)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--accent)]"
+                  className="w-full rounded-[1.2rem] border border-[var(--border-soft)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--foreground)]"
                 >
                   {categories.map((category) => (
                     <option key={category.value} value={category.value}>
@@ -259,236 +356,199 @@ export function OnePageGenerator() {
                   required
                   value={draft.audience}
                   onChange={(event) => updateField("audience", event.target.value)}
-                  className="w-full rounded-2xl border border-[var(--border-soft)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--accent)]"
+                  className="w-full rounded-[1.2rem] border border-[var(--border-soft)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--foreground)]"
+                  placeholder="Students building consistent routines"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium">Differentiator</label>
+              <label className="mb-2 block text-sm font-medium">What makes it different?</label>
               <textarea
                 required
                 value={draft.differentiator}
                 onChange={(event) => updateField("differentiator", event.target.value)}
-                className="min-h-28 w-full rounded-3xl border border-[var(--border-soft)] bg-white px-4 py-4 text-sm leading-7 outline-none transition focus:border-[var(--accent)]"
+                className="min-h-28 w-full rounded-[1.5rem] border border-[var(--border-soft)] bg-white px-4 py-4 text-sm leading-7 outline-none transition focus:border-[var(--foreground)]"
+                placeholder="It feels calm and lightweight instead of turning habits into homework."
               />
             </div>
 
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-strong)]"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-medium text-[#fff7ef] transition-colors hover:bg-[#121722] md:hidden"
             >
-              Generate free preview
+              Generate preview
             </button>
           </div>
         </form>
 
-        <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_20px_50px_rgba(23,32,51,0.05)]">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--ink-soft)]">
-                Preview
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-                {hasGenerated ? "Your launch kit preview" : "Output appears here"}
-              </h2>
+        <div className="grid gap-4">
+          <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--ink-soft)]">
+                  Preview
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
+                  {hasGenerated ? "Your launch direction" : "Live preview"}
+                </h2>
+              </div>
+              <div className="rounded-full border border-[var(--border-soft)] bg-white px-3 py-2 text-xs uppercase tracking-[0.24em] text-[var(--ink-soft)]">
+                {activePlan}
+              </div>
             </div>
-            <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 px-4 py-3 text-sm">
-              <span className="font-mono uppercase tracking-[0.25em] text-[var(--ink-soft)]">
-                plan
-              </span>
-              <p className="mt-1 font-medium capitalize">{activePlan}</p>
-            </div>
-          </div>
 
-          {hasGenerated ? (
-            <div className="mt-6 grid gap-5">
-              {checkoutError ? (
-                <div className="rounded-3xl border border-[rgba(194,65,12,0.24)] bg-[rgba(194,65,12,0.08)] p-5">
-                  <p className="text-sm leading-7 text-[var(--foreground)]">{checkoutError}</p>
-                </div>
-              ) : null}
+            {checkoutError ? (
+              <div className="mt-5 rounded-[1.35rem] border border-[rgba(194,65,12,0.24)] bg-[rgba(194,65,12,0.08)] p-4">
+                <p className="text-sm leading-7 text-[var(--foreground)]">{checkoutError}</p>
+              </div>
+            ) : null}
 
-              <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-[var(--ink-soft)]">Name suggestions</p>
-                <ul className="mt-3 space-y-2 text-sm leading-7">
+            <div className="mt-5 space-y-4">
+              <div className="rounded-[1.4rem] border border-[var(--border-soft)] bg-white p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--ink-soft)]">Names</p>
+                <div className="mt-3 flex flex-wrap gap-2">
                   {kit.appNames.map((name) => (
-                    <li key={name}>{name}</li>
+                    <span
+                      key={name}
+                      className="rounded-full bg-[#f3ede4] px-3 py-2 text-sm font-medium text-[var(--foreground)]"
+                    >
+                      {name}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-[var(--ink-soft)]">Subtitle</p>
+              <div className="rounded-[1.4rem] border border-[var(--border-soft)] bg-white p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--ink-soft)]">Listing</p>
                 <p className="mt-3 text-lg font-medium">{kit.subtitle}</p>
+                <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{kit.shortDescription}</p>
               </div>
 
-              <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-[var(--ink-soft)]">Short description</p>
-                <p className="mt-3 text-sm leading-7">{kit.shortDescription}</p>
-              </div>
-
-              <div className="rounded-3xl bg-[var(--foreground)] p-5 text-[#f7f3ec]">
-                <p className="text-xs uppercase tracking-[0.25em] text-[#cbd5e1]">Screenshot copy</p>
-                <div className="mt-4 space-y-4">
+              <div className="rounded-[1.4rem] border border-[var(--border-soft)] bg-white p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--ink-soft)]">Screenshot copy</p>
+                <div className="mt-3 space-y-3">
                   {kit.screenshots
-                    .slice(0, planIncludes(activePlan, "full") ? kit.screenshots.length : 2)
-                    .map((shot, index) => (
-                      <div key={shot.title} className="rounded-3xl bg-white/8 p-4">
-                        <h3 className="font-semibold">
-                          Screenshot {index + 1}: {shot.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-7 text-[#dde4ef]">{shot.caption}</p>
+                    .slice(0, planIncludes(activePlan, "full") ? 3 : 2)
+                    .map((shot) => (
+                      <div key={shot.title} className="rounded-[1.15rem] bg-[#faf5ef] p-3">
+                        <p className="text-sm font-medium">{shot.title}</p>
+                        <p className="mt-1 text-sm leading-6 text-[var(--ink-soft)]">{shot.caption}</p>
                       </div>
                     ))}
                 </div>
               </div>
-
-              {!planIncludes(activePlan, "full") ? (
-                <div className="rounded-3xl border border-dashed border-[var(--border-soft)] bg-[rgba(31,36,48,0.03)] p-5">
-                  <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--ink-soft)]">
-                    Locked
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
-                    Upgrade to Full Kit to unlock the remaining screenshot captions and export options.
-                  </p>
-                </div>
-              ) : null}
-
-              {planIncludes(activePlan, "pro") ? (
-                <div className="grid gap-4 md:grid-cols-3">
-                  <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-4">
-                    <h3 className="font-semibold">Review checklist</h3>
-                    <ul className="mt-3 space-y-2 text-sm leading-7">
-                      {kit.reviewChecklist.map((item) => (
-                        <li key={item.area}>{item.area}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-4">
-                    <h3 className="font-semibold">Privacy notes</h3>
-                    <ul className="mt-3 space-y-2 text-sm leading-7">
-                      {kit.privacyNotes.slice(0, 3).map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="rounded-3xl border border-[var(--border-soft)] bg-white/80 p-4">
-                    <h3 className="font-semibold">Launch posts</h3>
-                    <ul className="mt-3 space-y-2 text-sm leading-7">
-                      <li>{kit.launchCopy.hero}</li>
-                      <li>{kit.launchCopy.productHunt}</li>
-                      <li>{kit.launchCopy.tweet}</li>
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <div className="rounded-3xl border border-dashed border-[var(--border-soft)] bg-[rgba(31,36,48,0.03)] p-5">
-                  <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--ink-soft)]">
-                    Pro unlock
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
-                    Upgrade to Pro Kit to add review notes, privacy guidance, and launch messaging.
-                  </p>
-                </div>
-              )}
             </div>
-          ) : (
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
-              Generate the preview to see listing copy, screenshot captions, and the paid upgrade sections.
+          </section>
+
+          <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--foreground)] p-6 text-[#f7f2ea] shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+            <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#c0cada]">
+              Included in Pro
             </p>
-          )}
-        </section>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="rounded-[1.25rem] bg-white/8 p-4">
+                <p className="text-sm font-medium">Review notes</p>
+                <p className="mt-1 text-sm leading-6 text-[#dbe2ed]">Starter guidance for App Review-sensitive areas.</p>
+              </div>
+              <div className="rounded-[1.25rem] bg-white/8 p-4">
+                <p className="text-sm font-medium">Privacy guidance</p>
+                <p className="mt-1 text-sm leading-6 text-[#dbe2ed]">Permission wording and privacy-label reminders.</p>
+              </div>
+              <div className="rounded-[1.25rem] bg-white/8 p-4">
+                <p className="text-sm font-medium">Launch copy</p>
+                <p className="mt-1 text-sm leading-6 text-[#dbe2ed]">Tweet, Product Hunt angle, and simple launch messaging.</p>
+              </div>
+            </div>
+          </section>
+        </div>
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-3">
+      <section id="pricing" className="grid gap-4 lg:grid-cols-3">
         {plans.map((plan) => {
           const isActive = activePlan === plan.key;
 
           return (
             <div
               key={plan.key}
-              className={`rounded-[2rem] border p-6 ${
+              className={`rounded-[2rem] border p-6 shadow-[0_24px_60px_rgba(15,23,42,0.05)] ${
                 isActive
-                  ? "border-[var(--accent)] bg-[var(--surface-strong)] shadow-[0_20px_50px_rgba(23,32,51,0.08)]"
-                  : "border-[var(--border-soft)] bg-[var(--surface)]"
+                  ? "border-[var(--foreground)] bg-[var(--foreground)] text-[#fff7ef]"
+                  : "border-[var(--border-soft)] bg-[var(--surface-strong)]"
               }`}
             >
-              <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--ink-soft)]">
+              <p
+                className={`font-mono text-xs uppercase tracking-[0.28em] ${
+                  isActive ? "text-[#c8d0df]" : "text-[var(--ink-soft)]"
+                }`}
+              >
                 {plan.title}
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">{plan.price}</h2>
-              <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{plan.description}</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em]">{plan.price}</h2>
+              <p
+                className={`mt-3 text-sm leading-7 ${
+                  isActive ? "text-[#e7edf6]" : "text-[var(--ink-soft)]"
+                }`}
+              >
+                {plan.description}
+              </p>
 
-              {plan.key === "free" ? (
-                <button
-                  type="button"
-                  onClick={() => handleUnlock("free")}
-                  className="mt-5 inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] bg-white px-5 py-3 text-sm font-medium"
-                >
-                  Stay on free
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => void handlePaidCheckout(plan.key)}
-                  disabled={isStartingCheckout === plan.key}
-                  className="mt-5 inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {isStartingCheckout === plan.key
+              <button
+                type="button"
+                onClick={() =>
+                  plan.key === "free" ? handleStayFree() : void handlePaidCheckout(plan.key)
+                }
+                disabled={isStartingCheckout === plan.key}
+                className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition ${
+                  isActive
+                    ? "bg-white text-[var(--foreground)] hover:bg-[#f6efe7]"
+                    : "bg-[var(--foreground)] text-[#fff7ef] hover:bg-[#121722]"
+                } disabled:cursor-not-allowed disabled:opacity-60`}
+              >
+                {plan.key === "free"
+                  ? "Keep preview"
+                  : isStartingCheckout === plan.key
                     ? "Starting checkout..."
-                    : "Continue to checkout"}
-                </button>
-              )}
+                    : `Choose ${plan.title}`}
+              </button>
             </div>
           );
         })}
       </section>
 
-      <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_20px_50px_rgba(23,32,51,0.05)]">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--ink-soft)]">
-              Export
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-              Export your launch kit.
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-soft)]">
-              Download the finished launch kit as Markdown or print it to PDF for review and handoff.
-            </p>
-          </div>
+      {activePlan !== "free" ? (
+        <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-6 shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.32em] text-[var(--ink-soft)]">
+                Export
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
+                Your launch kit is ready to export.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
+                Download the kit as Markdown or print it to PDF for handoff, review, or publishing prep.
+              </p>
+            </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={downloadMarkdown}
-              disabled={!markdown}
-              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Download markdown
-            </button>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              disabled={activePlan === "free"}
-              className="inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] bg-white px-6 py-3 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Print to PDF
-            </button>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={downloadMarkdown}
+                className="inline-flex items-center justify-center rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-medium text-[#fff7ef]"
+              >
+                Download markdown
+              </button>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] bg-white px-6 py-3 text-sm font-medium"
+              >
+                Print to PDF
+              </button>
+            </div>
           </div>
-        </div>
-
-        {activePlan === "free" ? (
-          <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">
-            Unlock Full Kit or Pro to export.
-          </p>
-        ) : (
-          <pre className="mt-5 overflow-x-auto rounded-3xl border border-[var(--border-soft)] bg-white p-4 text-xs leading-6 text-[var(--foreground)]">
-            {markdown}
-          </pre>
-        )}
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }
