@@ -24,6 +24,9 @@ jobs:
         working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            apps/web
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -31,7 +34,5 @@ jobs:
         run: npm install --global vercel@latest
       - name: Pull Vercel production settings
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
-      - name: Build production artifacts
-        run: vercel build --prod --token="$VERCEL_TOKEN"
       - name: Deploy to Vercel production
-        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+        run: vercel deploy --prod --yes --token="$VERCEL_TOKEN"

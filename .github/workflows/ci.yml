@@ -19,13 +19,14 @@ jobs:
 
   web:
     runs-on: ubuntu-latest
-    env:
-      NPM_CONFIG_WORKSPACES: "false"
     defaults:
       run:
         working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            apps/web
       - uses: actions/setup-node@v4
         with:
           node-version: 22
