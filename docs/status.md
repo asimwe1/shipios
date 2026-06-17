@@ -43,6 +43,7 @@ Pending:
 - no CI dependency installation is wired yet
 - the root `npm` workspace lock/install state is inconsistent locally and still needs cleanup before local `apps/web` builds are trustworthy
 - the stable Vercel alias `https://web-landrysb.vercel.app` is behind Vercel authentication, which currently returns `401` for webhook requests
+- GitHub now handles production web deployment on pushes to `master`, but web validation remains outside the main CI workflow until the npm workspace/package-lock state is normalized
 
 ## Immediate next tasks
 
