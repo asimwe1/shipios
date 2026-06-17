@@ -58,7 +58,7 @@ export function ExportClient() {
           Unlock Full Kit or Pro to export.
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
-          The free preview is meant to prove value quickly. Export is the paid step for this MVP.
+          Export is available with Full Kit or Pro Kit.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
@@ -90,7 +90,7 @@ export function ExportClient() {
               Your AppLaunchKit is unlocked.
             </h1>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-soft)]">
-              Markdown export works directly now. PDF is handled through print-to-PDF so the MVP stays lightweight until a formal export service is wired.
+              Download your kit as Markdown or print it to PDF for review, sharing, or publishing handoff.
             </p>
           </div>
 
@@ -215,4 +215,3 @@ export function ExportClient() {
     </div>
   );
 }
-

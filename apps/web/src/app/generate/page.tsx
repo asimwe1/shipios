@@ -11,7 +11,7 @@ export default function GeneratePage() {
           Paste the app idea. Generate the launch kit.
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--ink-soft)] sm:text-base">
-          This MVP stays intentionally narrow: idea in, launch story out. No code generation, no fake complexity.
+          Describe the app, who it is for, and what makes it different. AppLaunchKit will turn that into release-ready App Store copy.
         </p>
       </section>
 
@@ -19,4 +19,3 @@ export default function GeneratePage() {
     </main>
   );
 }
-

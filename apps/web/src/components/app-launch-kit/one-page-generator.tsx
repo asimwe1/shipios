@@ -181,26 +181,26 @@ export function OnePageGenerator() {
         <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--ink-soft)]">
-              Final MVP
+              App Store launch kit
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-              Paste an app idea. Generate a paid App Store launch kit.
+              Turn one app idea into launch-ready App Store copy.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--ink-soft)] sm:text-lg">
-              One page. One flow. One paid output. Listing copy, screenshot captions, privacy notes, launch posts, and review prep from a single app idea.
+              Generate listing copy, screenshot captions, privacy guidance, launch messaging, and review notes from a single app idea.
             </p>
           </div>
 
           <div className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-5">
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--accent)]">
-              Monetization path
+              What you get
             </p>
             <div className="mt-4 grid gap-3">
               {[
-                "Free preview proves value with partial output.",
-                "Full Kit unlocks the full App Store package for $9.",
-                "Pro Kit adds risk checklist, privacy notes, and launch copy for $19.",
-                "No subscriptions needed at launch.",
+                "Preview the core listing before you buy.",
+                "Full Kit includes the complete App Store listing and screenshot copy.",
+                "Pro Kit adds review checklist notes, privacy guidance, and launch messaging.",
+                "Export the finished kit in Markdown or print it as a PDF.",
               ].map((item) => (
                 <div
                   key={item}
@@ -350,7 +350,7 @@ export function OnePageGenerator() {
                     Locked
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
-                    The rest of the screenshot pack and export unlock with Full Kit.
+                    Upgrade to Full Kit to unlock the remaining screenshot captions and export options.
                   </p>
                 </div>
               ) : null}
@@ -388,7 +388,7 @@ export function OnePageGenerator() {
                     Pro unlock
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
-                    Checklist, privacy guidance, and launch posts unlock with Pro Kit.
+                    Upgrade to Pro Kit to add review notes, privacy guidance, and launch messaging.
                   </p>
                 </div>
               )}
@@ -452,10 +452,10 @@ export function OnePageGenerator() {
               Export
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-              Paid export lives on the same page.
+              Export your launch kit.
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-soft)]">
-              This keeps the MVP brutally simple. The free preview proves value. The paid action unlocks download.
+              Download the finished launch kit as Markdown or print it to PDF for review and handoff.
             </p>
           </div>
 

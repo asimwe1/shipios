@@ -18,7 +18,7 @@ export function SiteHeader() {
         <div>
           <p className="text-sm font-semibold tracking-[-0.03em]">AppLaunchKit</p>
           <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--ink-soft)]">
-            inside ShipiOS
+            App Store launch copy
           </p>
         </div>
       </Link>
@@ -37,4 +37,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

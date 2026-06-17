@@ -62,7 +62,7 @@ export function PreviewClient() {
               Launch kit preview for your app idea
             </h1>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--ink-soft)]">
-              This is the active MVP flow inside the ShipiOS repo: AppLaunchKit first, deeper app-building later.
+              Review the generated listing copy, screenshot messaging, and upgrade options before exporting the full kit.
             </p>
           </div>
 
@@ -160,7 +160,7 @@ export function PreviewClient() {
           ) : (
             <LockedCard
               title="Unlock checklist, privacy notes, and launch copy"
-              description="The Pro kit adds launch messaging and App Review-oriented guidance, which is the strongest paid upgrade."
+              description="The Pro kit adds launch messaging, privacy guidance, and App Review notes for a more complete release package."
             />
           )}
         </div>
@@ -183,4 +183,3 @@ export function PreviewClient() {
     </div>
   );
 }
-

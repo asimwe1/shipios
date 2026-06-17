@@ -16,9 +16,9 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AppLaunchKit",
+  title: "AppLaunchKit | App Store Launch Kits",
   description:
-    "Generate an App Store launch kit from one app idea: listing copy, screenshot captions, privacy notes, and launch messaging.",
+    "Generate App Store listing copy, screenshot captions, privacy guidance, and launch messaging from one app idea.",
 };
 
 export default function RootLayout({

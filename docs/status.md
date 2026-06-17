@@ -18,6 +18,7 @@ Completed:
 - replaced the Stripe server payment routes with Lemon Squeezy checkout and webhook routes
 - added Lemon Squeezy environment templates and configured Vercel production environment variables for the web app
 - aligned GitHub Actions with the real default branch and added a GitHub-driven Vercel production deploy workflow for `apps/web`
+- cleaned the public AppLaunchKit copy to remove internal MVP language and replaced the old simulated checkout route with real Lemon Squeezy checkout
 
 Pending:
 

@@ -77,7 +77,7 @@ export async function createCheckoutUrl(plan: PaidPlan) {
           checkout_data: {
             custom: {
               plan,
-              source: "applaunchkit-mvp",
+              source: "applaunchkit-web",
             },
           },
           test_mode: isTestModeEnabled(),
@@ -128,4 +128,3 @@ export function isValidWebhookSignature(rawBody: string, signature: string) {
 
   return crypto.timingSafeEqual(digest, incoming);
 }
-

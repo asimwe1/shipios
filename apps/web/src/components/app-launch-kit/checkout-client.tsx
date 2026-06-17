@@ -12,7 +12,6 @@ import {
 import {
   readDraftFromStorage,
   readPlanFromStorage,
-  savePlanToStorage,
 } from "@/lib/mvp-storage";
 
 const plans: {
@@ -55,6 +54,8 @@ export function CheckoutClient() {
   const [draft, setDraft] = useState<AppLaunchDraft | null>(null);
   const [kit, setKit] = useState<LaunchKit | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<PaidPlan>("pro");
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [isStartingCheckout, setIsStartingCheckout] = useState<PaidPlan | null>(null);
 
   useEffect(() => {
     const nextDraft = readDraftFromStorage();
@@ -63,9 +64,37 @@ export function CheckoutClient() {
     setSelectedPlan(readPlanFromStorage() === "free" ? "pro" : readPlanFromStorage());
   }, []);
 
-  function handleUnlock() {
-    savePlanToStorage(selectedPlan);
-    router.push("/export");
+  async function handleCheckout() {
+    if (selectedPlan === "free") {
+      router.push("/preview");
+      return;
+    }
+
+    setCheckoutError(null);
+    setIsStartingCheckout(selectedPlan);
+
+    try {
+      const response = await fetch("/api/lemonsqueezy/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ plan: selectedPlan }),
+      });
+
+      const data = (await response.json()) as { url?: string; error?: string };
+
+      if (!response.ok || !data.url) {
+        throw new Error(data.error ?? "Unable to create checkout.");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      setCheckoutError(
+        error instanceof Error ? error.message : "Unable to start checkout.",
+      );
+      setIsStartingCheckout(null);
+    }
   }
 
   if (!draft || !kit) {
@@ -76,14 +105,13 @@ export function CheckoutClient() {
     <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
       <section className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--foreground)] p-6 text-[#f7f3ec]">
         <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#b7c1d3]">
-          Why this MVP sells
+          Checkout
         </p>
         <h1 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-          You are buying launch clarity, not code generation.
+          Choose the launch kit that fits your release.
         </h1>
         <p className="mt-4 text-sm leading-7 text-[#dde4ef]">
-          This MVP is intentionally narrow. It turns one app idea into App Store listing copy,
-          screenshot messaging, and launch assets that are immediately useful.
+          AppLaunchKit helps you turn one app idea into polished App Store copy, screenshot messaging, and launch assets you can use immediately.
         </p>
 
         <div className="mt-6 rounded-3xl bg-white/8 p-5">
@@ -99,6 +127,12 @@ export function CheckoutClient() {
       </section>
 
       <section className="grid gap-4">
+        {checkoutError ? (
+          <div className="rounded-[2rem] border border-[rgba(194,65,12,0.24)] bg-[rgba(194,65,12,0.08)] p-5">
+            <p className="text-sm leading-7 text-[var(--foreground)]">{checkoutError}</p>
+          </div>
+        ) : null}
+
         {plans.map((plan) => {
           const isActive = selectedPlan === plan.key;
 
@@ -142,10 +176,15 @@ export function CheckoutClient() {
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="button"
-            onClick={handleUnlock}
+            onClick={() => void handleCheckout()}
             className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-strong)]"
+            disabled={isStartingCheckout !== null}
           >
-            Simulate unlock and continue
+            {selectedPlan === "free"
+              ? "Continue with free preview"
+              : isStartingCheckout === selectedPlan
+                ? "Starting checkout..."
+                : "Continue to secure checkout"}
           </button>
           <button
             type="button"
@@ -159,4 +198,3 @@ export function CheckoutClient() {
     </div>
   );
 }
-
