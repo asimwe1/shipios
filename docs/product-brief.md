@@ -4,6 +4,22 @@
 
 ShipiOS is a web-first product for turning an app idea into a previewable, structured, exportable iOS starter app.
 
+## Active MVP
+
+The immediate MVP is `AppLaunchKit`, not the full ShipiOS generator.
+
+`AppLaunchKit` focuses on:
+
+- one-page generation flow
+- App Store listing copy
+- screenshot captions
+- App Review-oriented checklist notes
+- privacy notes
+- launch copy
+- paid export
+
+This is intentionally smaller than the long-term ShipiOS vision and should be treated as the short-term commercial wedge.
+
 ## Target flow
 
 1. User describes an app idea.
@@ -48,4 +64,3 @@ Support only simple starter-app categories first:
 3. Generated code should be maintainable by a human iOS developer.
 4. Readiness checks should be honest, not marketing fluff.
 5. The product should help beginners while still being credible to serious builders.
-

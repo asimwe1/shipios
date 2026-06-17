@@ -47,3 +47,10 @@ Any meaningful change to repo structure, tooling, or architecture should update:
 - `README.md` if the public repo story changed
 - `AGENTS.md` if contributor rules changed
 
+## GitHub delivery workflow
+
+1. Treat `master` as the current default branch until the repository is intentionally renamed.
+2. Pushes and pull requests should be validated by GitHub Actions before anyone treats the change as deployable.
+3. The Rust workspace is checked in CI from the repository root.
+4. The web app is checked in CI from `apps/web` using its app-local `package-lock.json`.
+5. Production web deploys are triggered by GitHub Actions on pushes to `master` and use the linked Vercel project IDs plus a `VERCEL_TOKEN` repository secret.

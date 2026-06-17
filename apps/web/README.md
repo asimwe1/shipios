@@ -2,6 +2,8 @@
 
 This is the `Next.js` product app for ShipiOS.
 
+The active product surface inside it is currently `AppLaunchKit`, a narrower MVP focused on generating App Store launch kits from app ideas.
+
 It will own:
 
 - landing pages
@@ -13,7 +15,7 @@ It will own:
 
 ## Current state
 
-The app was scaffolded with `create-next-app` and then adjusted so the default page reflects the ShipiOS workspace instead of the stock template.
+The app was scaffolded with `create-next-app` and then adjusted into a working `AppLaunchKit` one-page MVP flow.
 
 ## Run
 
@@ -31,7 +33,7 @@ npm run dev
 
 ## Next implementation targets
 
-1. Replace the placeholder home screen with real landing and product routes.
-2. Introduce a shared schema package for preview-safe data.
-3. Add project dashboard and prompt-to-schema flow.
-4. Connect export jobs to the worker and Rust engine boundary.
+1. Replace local storage state with real persistence.
+2. Add AI-backed generation instead of deterministic local templates.
+3. Persist successful Lemon Squeezy purchases beyond local browser storage.
+4. Keep the longer-term ShipiOS architecture isolated until the MVP proves demand.
