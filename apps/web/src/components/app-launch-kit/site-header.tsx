@@ -34,7 +34,7 @@ export function SiteHeader() {
         </nav>
         <Link
           href="#generator"
-          className="inline-flex items-center justify-center rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[#fff7ef] transition-colors hover:bg-[#121722]"
+          className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-strong)]"
         >
           Start
         </Link>
