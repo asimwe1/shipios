@@ -259,7 +259,7 @@ export function planIncludes(plan: PaidPlan, section: "full" | "pro") {
 
 export function buildMarkdownExport(draft: AppLaunchDraft, kit: LaunchKit, plan: PaidPlan) {
   const lines = [
-    "# AppLaunchKit Export",
+    "# Orivo Export",
     "",
     `- Plan: ${plan.toUpperCase()}`,
     `- Category: ${categoryLabels[draft.category]}`,

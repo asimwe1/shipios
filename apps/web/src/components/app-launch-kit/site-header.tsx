@@ -10,10 +10,10 @@ export function SiteHeader() {
     <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 sm:px-10 lg:px-12">
       <Link href="/" className="flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--foreground)] text-sm font-semibold text-[#f6efe7] shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-          AL
+          OR
         </div>
         <div>
-          <p className="text-sm font-semibold tracking-[-0.03em]">AppLaunchKit</p>
+          <p className="text-sm font-semibold tracking-[-0.03em]">Orivo</p>
           <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--ink-soft)]">
             Launch assets for app founders
           </p>

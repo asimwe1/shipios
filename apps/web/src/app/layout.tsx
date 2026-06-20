@@ -16,7 +16,7 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AppLaunchKit | App Store Launch Kits",
+  title: "Orivo | App Store Launch Kits",
   description:
     "Generate App Store listing copy, screenshot captions, privacy guidance, and launch messaging from one app idea.",
 };

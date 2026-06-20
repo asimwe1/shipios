@@ -199,7 +199,7 @@ export function OnePageGenerator() {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "applaunchkit-export.md";
+    anchor.download = "orivo-export.md";
     anchor.click();
     URL.revokeObjectURL(url);
   }

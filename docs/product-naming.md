@@ -1,89 +1,52 @@
 # Product Naming
 
-## Naming brief
+## Decision
 
-The current name `ShipiOS` is clear internally but weak as a product brand.
+The public-facing product name is:
 
-Problems:
+`Orivo`
 
-- sounds mechanical rather than memorable
-- is easy to mishear
-- over-emphasizes `iOS` in a slightly awkward way
-- does not strongly communicate launch, preview, or App Store readiness
+The repository and internal architecture name remain:
 
-The replacement name should be:
+`ShipiOS`
 
-- short
-- easy to say once and remember later
-- credible for indie builders and small teams
-- broad enough to cover launch kits now and app generation later
-- not dependent on the exact current MVP
+## Why `Orivo`
 
-## Strong directions
+`Orivo` fits the direction better than the earlier naming passes because it feels like a product or tool, not a marketing phrase or a person's name.
 
-### 1. Launch-focused
-
-- `Launchlane`
-- `Launchcraft`
-- `Launchspring`
-- `Launchdeck`
-- `Launchmint`
-
-Why:
-- fits App Store launch kits now
-- still works if the product later expands into app generation
-
-### 2. App-store / release-focused
-
-- `Storepath`
-- `Storecraft`
-- `Readylane`
-- `Releasekit`
-- `Launchmark`
-
-Why:
-- connects better to positioning around readiness and release
-
-### 3. Builder-tool focused
-
-- `Appmint`
-- `Buildlane`
-- `Draftbit` style direction but original naming needed
-- `Appforge`
-- `Appspring`
-
-Why:
-- more flexible if the product becomes bigger than launch assets
-
-## Best shortlist
-
-If the goal is memorable, usable, and flexible, the best shortlist is:
-
-1. `Launchlane`
-2. `Appmint`
-3. `Launchdeck`
-4. `Storepath`
-5. `Readylane`
-
-## Recommended current pick
-
-Best current recommendation:
-
-`Launchlane`
-
-Why:
+It is:
 
 - short
 - easy to say
-- not overly technical
-- works for the current launch-kit product
-- still broad enough for future app-planning, preview, and export workflows
+- not overly descriptive
+- clean enough for a design or developer-facing product
+- broad enough for the current launch-kit workflow and later ShipiOS expansion
 
-## Naming rule for now
+## Naming standard going forward
 
-Until a final rename is chosen:
+When choosing future names for features, apps, or sub-products in this ecosystem, prefer names that feel closer to:
 
-- keep repository and internal architecture names as `ShipiOS`
-- allow public-facing product exploration under a better external brand
-- avoid hard-baking the final public name into schemas or engine crate names too early
+- `Figma`
+- `Rork`
+- `Replit`
+- `Linear`
+- `Cursor`
 
+That means:
+
+- one word
+- usually 4 to 7 letters
+- not obviously descriptive
+- not human-name-like
+- not soft consumer-brand sounding
+- more like a capable tool or platform than a campaign slogan
+
+## Repo rule
+
+Keep these boundaries clear:
+
+- `ShipiOS` stays the repository and internal architecture name
+- `Orivo` is the public-facing product brand
+- schema, crate, and package names should not be renamed casually just because the brand changed
+
+If a deeper rename is ever needed later, it should be done as an explicit technical migration rather than mixed into normal product work.

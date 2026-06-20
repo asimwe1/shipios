@@ -2,7 +2,7 @@
 
 This is the `Next.js` product app for ShipiOS.
 
-The active product surface inside it is currently `AppLaunchKit`, a narrower MVP focused on generating App Store launch kits from app ideas.
+The active product surface inside it is currently `Orivo`, a narrower MVP focused on generating App Store launch kits from app ideas.
 
 It will own:
 
@@ -15,7 +15,7 @@ It will own:
 
 ## Current state
 
-The app was scaffolded with `create-next-app` and then adjusted into a working `AppLaunchKit` one-page MVP flow.
+The app was scaffolded with `create-next-app` and then adjusted into a working `Orivo` one-page MVP flow.
 
 ## Run
 

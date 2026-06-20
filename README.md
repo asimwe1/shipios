@@ -2,9 +2,9 @@
 
 ShipiOS is being prepared as a focused product for turning an app idea into a previewable, exportable, App Store-aware iOS starter project.
 
-The active MVP inside this repository is currently `AppLaunchKit`.
+The active public-facing MVP inside this repository is currently `Orivo`.
 
-`AppLaunchKit` is the faster cash-flow wedge:
+`Orivo` is the faster cash-flow wedge:
 
 - app idea in
 - App Store launch kit out
@@ -24,7 +24,7 @@ Ready now:
 
 - repo structure for apps, packages, crates, schemas, examples, docs, and CI
 - Rust workspace with initial crates for schema, engine, and CLI
-- `AppLaunchKit` one-page MVP flow in the Next.js app
+- `Orivo` one-page MVP flow in the Next.js app
 - documentation for architecture, workflows, review standards, and project status
 - agent and Codex guidance for future contributors
 - example ShipiOS app schema and a first example project
@@ -32,7 +32,7 @@ Ready now:
 Pending:
 
 - install Node dependencies for the web app and shared TypeScript packages
-- wire real persistence, payments, and AI generation for `AppLaunchKit`
+- wire real persistence, payments, and AI generation for `Orivo`
 - wire schema generation between Rust and TypeScript for later ShipiOS phases
 - implement the first ShipiOS preview renderer and exporter after MVP validation
 

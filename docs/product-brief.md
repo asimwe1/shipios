@@ -6,9 +6,9 @@ ShipiOS is a web-first product for turning an app idea into a previewable, struc
 
 ## Active MVP
 
-The immediate MVP is `AppLaunchKit`, not the full ShipiOS generator.
+The immediate MVP is `Orivo`, not the full ShipiOS generator.
 
-`AppLaunchKit` focuses on:
+`Orivo` focuses on:
 
 - one-page generation flow
 - App Store listing copy

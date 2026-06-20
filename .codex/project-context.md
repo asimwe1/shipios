@@ -32,11 +32,11 @@ For concrete API details, read:
 
 ## Naming direction
 
-`ShipiOS` is still the internal repo name, but it is not the preferred long-term product brand.
+`ShipiOS` is still the internal repo name, but the chosen public-facing product brand is `Orivo`.
 
-Current recommended external naming candidate:
+Current external product name:
 
-- `Launchlane`
+- `Orivo`
 
 See:
 

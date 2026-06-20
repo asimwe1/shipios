@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-06-17
+Last updated: 2026-06-20
 
 ## Repository state
 
@@ -14,13 +14,14 @@ Completed:
 - added root workspace documentation and repo hygiene files
 - documented architecture, workflows, review standards, and current decisions
 - added initial schema artifacts and example files
-- implemented the AppLaunchKit MVP flow in the Next.js app as a one-page generator with supporting routes retained in the repo
+- implemented the current one-page launch-kit MVP flow in the Next.js app
 - replaced the Stripe server payment routes with Lemon Squeezy checkout and webhook routes
 - added Lemon Squeezy environment templates and configured Vercel production environment variables for the web app
 - aligned GitHub Actions with the real default branch and added a GitHub-driven Vercel production deploy workflow for `apps/web`
-- cleaned the public AppLaunchKit copy to remove internal MVP language and replaced the old simulated checkout route with real Lemon Squeezy checkout
-- removed the legacy multi-page AppLaunchKit routes so the web product now runs as a single-page flow on `/`
+- cleaned the public launch-kit copy to remove internal MVP language and replaced the old simulated checkout route with real Lemon Squeezy checkout
+- removed the legacy multi-page launch-kit routes so the web product now runs as a single-page flow on `/`
 - added a reusable project Daisy skill for future mobile screen design work and documented naming candidates to replace `ShipiOS`
+- selected `Orivo` as the public-facing product brand while keeping `ShipiOS` as the internal repo and architecture name
 
 Pending:
 
@@ -33,7 +34,8 @@ Pending:
 ## Important decisions already made
 
 - web-first product with `Next.js`
-- AppLaunchKit is the current MVP inside the ShipiOS repo
+- the current MVP inside the ShipiOS repo is the one-page launch-kit workflow
+- `Orivo` is the chosen public-facing brand for that MVP
 - Rust engine boundary from early stage
 - schema as product contract
 - deterministic export over free-form code generation
@@ -51,7 +53,7 @@ Pending:
 ## Immediate next tasks
 
 1. Complete workspace dependency installation.
-2. Wire real AI generation into AppLaunchKit.
+2. Wire real AI generation into Orivo.
 3. Add durable checkout and export persistence.
 4. Add generated or mirrored TypeScript schema types for later ShipiOS work.
 5. Extend validation coverage and begin ShipiOS-specific export templates after MVP validation.
