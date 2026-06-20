@@ -10,6 +10,38 @@ ShipiOS should start as:
 - background jobs for generation/export flow
 - Rust engine for strict schema validation and deterministic SwiftUI export
 
+## Current product surface
+
+The current public-facing product is a one-page App Store launch-kit workflow, not the full long-term app generator.
+
+## Daisy design workflow
+
+Use the project skill:
+
+- `.codex/skills/shipios-daisy-mobile-design/SKILL.md`
+
+Use Daisy when a task needs:
+
+- native iPhone screen concepts
+- reusable app screen mockups
+- iteration on ShipiOS-generated app interfaces
+
+For concrete API details, read:
+
+- `.codex/skills/shipios-daisy-mobile-design/references/daisy-api.md`
+
+## Naming direction
+
+`ShipiOS` is still the internal repo name, but it is not the preferred long-term product brand.
+
+Current recommended external naming candidate:
+
+- `Launchlane`
+
+See:
+
+- `docs/product-naming.md`
+
 ## Working mental model
 
 - Next.js is the shop
@@ -32,4 +64,3 @@ The wedge is:
 - TypeScript workspace placeholders exist
 - documentation exists
 - `apps/web` still needs to be scaffolded with `create-next-app`
-

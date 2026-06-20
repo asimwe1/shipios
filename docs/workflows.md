@@ -16,6 +16,14 @@
 5. verify preview and export still align
 6. update docs if the contract or architecture changed
 
+## Mobile design workflow
+
+1. Use the project Daisy skill when the task is to design or iterate on native mobile screens.
+2. Reuse the same Daisy project for the same app or feature thread.
+3. Prefer Daisy runs over one-screen-at-a-time generation.
+4. Save Daisy project ids, run ids, and screen ids in handoff notes.
+5. Keep designs narrow, iPhone-native, and structurally believable for future SwiftUI work.
+
 ## Review workflow
 
 1. Validate schema changes first.

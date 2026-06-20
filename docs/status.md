@@ -20,6 +20,7 @@ Completed:
 - aligned GitHub Actions with the real default branch and added a GitHub-driven Vercel production deploy workflow for `apps/web`
 - cleaned the public AppLaunchKit copy to remove internal MVP language and replaced the old simulated checkout route with real Lemon Squeezy checkout
 - removed the legacy multi-page AppLaunchKit routes so the web product now runs as a single-page flow on `/`
+- added a reusable project Daisy skill for future mobile screen design work and documented naming candidates to replace `ShipiOS`
 
 Pending:
 
